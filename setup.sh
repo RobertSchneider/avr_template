@@ -11,7 +11,7 @@ wget "download.savannah.gnu.org/releases/avrdude/avrdude-6.1.tar.gz"
 tar -zxvf avrdude-6.1.tar.gz
 cd avrdude-6.1
 
-sudo apt-get install libusb-dev libpthread-stubs0-dev libelf-dev libusb-1.0 libftdi1 libhidapi-dev bison
+sudo apt-get install libusb-dev libpthread-stubs0-dev libelf-dev libusb-1.0 libftdi1 libhidapi-dev bison gcc-avr avr-libc
 ./configure
 make
 sudo make install
