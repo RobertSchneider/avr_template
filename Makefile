@@ -2,15 +2,16 @@ OBJS = main.c
 NAME = main
 
 all:
-	make clean compile install
+	make compile 
+	make install
 
 clean:
-	rm $(NAME).hex $(NAME).o $(NAME).elf
+	sudo rm $(NAME).hex $(NAME).o $(NAME).elf
 
 install:
-	avrdude -p m8 -c usbtiny -U flash:w:$(NAME).hex
+	sudo avrdude -p m8 -P /dev/ttyUSB0 -c avr910 -U flash:w:$(NAME).hex
 
 compile:
-	avr-gcc -g -Os -mmcu=atmega8 -c $(OBJS)
+	sudo avr-gcc -g -Os -mmcu=atmega8 -c main.c -std=c99 -I/usr/local/avr/include/ -Wall
 	avr-gcc -g -mmcu=atmega8 -o $(NAME).elf $(NAME).o
 	avr-objcopy -j .text -j .data -O ihex $(NAME).elf $(NAME).hex
